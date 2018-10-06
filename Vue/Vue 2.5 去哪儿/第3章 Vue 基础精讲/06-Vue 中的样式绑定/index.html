@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue 中的样式绑定</title>
+    <script src="../vue.js"></script>
+    <style>
+        .activated {
+            color: "red"
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- class 的对象绑定方式，activated 是否起作用决定于 isActivated -->
+        <!-- <div @click="handleClick" :class="{activated:isActivated}">Hello World!</div> -->
+
+        <!-- 此时是一个数组，可以取多个值 -->
+        <!-- <div @click="handleClick" :class="[activated]">Hello World!</div> -->
+
+        <!-- style 方式 -->
+        <div @click="handleClick" :style="styleObj">Hello World!</div>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                // isActivated: false
+                // activated: ""
+                styleObj: {
+                    color: "black"
+                }
+            },
+            methods: {
+                handleClick: function () {
+                    // this.isActivated = !this.isActivated
+                    // this.activated = (this.activated === "") ? "activated" : ""
+                    this.styleObj.color = (this.styleObj.color == "red") ? "black" : "red"
+                } 
+            }
+        })
+    </script>
+</body>
+
+</html>

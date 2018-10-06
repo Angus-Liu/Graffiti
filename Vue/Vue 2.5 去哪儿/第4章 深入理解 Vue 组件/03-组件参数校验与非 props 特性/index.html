@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件参数校验与非 props 特性</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <child content="Angus Liu"></child>
+    </div>
+
+    <script>
+        Vue.component('child', {
+            props: {
+                content: {
+                    type: String,
+                    required: false,
+                    default: 'default value',
+                    validator: function (value) { // 自定义校验器
+                        return value.length > 5
+                    }
+                }
+            },
+            template: '<div>{{content}}</div>'
+        })
+
+        var vm = new Vue({
+            el: "#root"
+        })
+    </script>
+</body>
+
+</html>

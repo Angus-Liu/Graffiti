@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 的模板语法</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 插值表达式 -->
+        <div>{{name}}</div>
+
+        <!-- v-text 模板语法，显示数据 innerText -->
+        <div v-text="name"></div>
+
+        <!-- v-text 模板语法，显示数据 innerHtml -->
+        <div v-html="hname"></div>
+
+        <div>{{name + ' Liu'}}</div>
+        <div v-text="name + ' Liu'"></div>
+        <div v-html="hname + ' Liu'"></div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                name: "Angus",
+                hname: "<b>Angus</b>"
+            }
+        })
+    </script>
+</body>
+
+</html>

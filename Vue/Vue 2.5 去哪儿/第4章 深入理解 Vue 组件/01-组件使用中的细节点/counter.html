@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件的引用</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- ref 表示该组件的引用或标签对应的dom元素 -->
+        <counter ref="counterOne" @change="handleChange"></counter>
+        +
+        <counter ref="counterTwo" @change="handleChange"></counter>
+        =
+        <span>{{total}}</span>
+    </div>
+
+    <script>
+        // 定义一个全局组件
+        Vue.component("counter", {
+            template: "<span @click='handleClick'>{{count}}</span>",
+            // 子组件的 data 必须是一个函数，目的是为了让各个组件间的数据隔离
+            data: function () {
+                return {
+                    count: 0
+                }
+            },
+            methods: {
+                handleClick: function () {
+                    this.count++
+                    this.$emit('change')
+                }
+            }
+        })
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                total : 0
+            },
+            methods : {
+                handleChange : function () {
+                    this.total = this.$refs.counterOne.count + this.$refs.counterTwo.count
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=Vue, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue 中的作用域插槽</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <child>
+            <!-- 处理循环时可以使用如下的作用域插槽 -->
+            <template slot-scope="props">
+                <h1>{{props.item}} ...</h1>
+            </template>
+        </child>
+    </div>
+
+    <script>
+        Vue.component('child', {
+            data: function () {
+                return {
+                    list: [1, 2, 3, 4]
+                }
+            },
+            template: `<div>
+                            <ul>
+                                <slot v-for="item of list" :item=item></slot>
+                            </ul>
+                        </div>`
+        })
+
+        var vm = new Vue({
+            el: "#root"
+        })
+    </script>
+</body>
+
+</html>

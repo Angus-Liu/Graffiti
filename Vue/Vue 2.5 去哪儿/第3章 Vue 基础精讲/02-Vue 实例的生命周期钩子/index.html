@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 实例生命周期函数</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">{{message}}</div>
+
+    <script>
+        var vm  = new Vue({
+            el: '#app',
+            data: {
+                message: "Hello World!"
+            },
+            beforeCreate: function () {
+                console.log("run beforeCreate...")
+            },
+            created: function () {
+                console.log("run created...")
+            },
+            beforeMount: function () {
+                console.log(this.$el)
+                console.log("run beforeMount...")
+            },
+            mounted: function () {
+                console.log(this.$el)
+                console.log("run mounted...")
+            },
+            beforeUpdate: function () {
+                console.log(this.$el)
+                console.log("run beforeUpdate...")
+            },
+            updated: function () {
+                console.log(this.$el)
+                console.log("run updated...")
+            },
+            beforeDestroy: function () {
+                console.log("run beforeDestroy...")
+            },
+            destroyed: function () {
+                console.log("run destroyed...")
+            }
+        })
+    </script>
+</body>
+</html>

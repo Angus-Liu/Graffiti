@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>父子组件的消息传递</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 父组件通过属性将值传递给子组件 -->
+        <counter :count='1'></counter>
+        <counter :count='-1'></counter>
+    </div>
+
+    <script>
+        // 定义一个局部组件
+        var counter = {
+            // 子组件通过 props 接收父组件传递过来的值
+            props: ['count'],
+            template: "<div>{{count}}</div>"
+        }
+
+        var vm = new Vue({
+            el: "#app",
+            // 注册/挂载局部组件
+            components: {
+                counter: counter
+            }
+        })
+    </script>
+</body>
+
+</html>

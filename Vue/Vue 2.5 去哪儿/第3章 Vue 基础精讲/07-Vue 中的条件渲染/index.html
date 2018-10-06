@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 中的条件渲染</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <div v-if="show">{{message}}</div>
+        <div v-else>Angus Liu</div> -->
+        <!-- v-show 不会删除 dom 节点，更高效 -->
+        <!-- <div v-show="show">{{message}}</div> -->
+
+        <div v-if="flag === 'a'">This is A</div>
+        <div v-else-if="flag === 'b'">This is B</div>
+        <div v-else-if="flag === 'c'">This is C</div>
+        <div v-else>This is Other</div>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                show: false,
+                message: "Hello World!",
+                flag: 'a'
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue 中的列表渲染</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <!-- 遍历数组 -->
+        <!-- template 标签充当模板，不会实际展示 -->
+        <template v-for="item of list">
+            <div>
+                {{item.no}}.{{item.text}}
+            </div>
+            <span>{{item.text}}</span>
+        </template>
+
+        <!-- 遍历对象 -->
+        <div v-for="(field, key, index) in userInfo">
+            {{index}}. {{key}}: {{field}}
+        </div>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                list: [{
+                        no: 1,
+                        text: "洗衣服"
+                    },
+                    {
+                        no: 2,
+                        text: "做饭"
+                    },
+                    {
+                        no: 3,
+                        text: "买菜"
+                    }
+                ],
+                userInfo: {
+                    name: "angus",
+                    age: 28,
+                    gender: "male",
+                    salary: "secret"
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
