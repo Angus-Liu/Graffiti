@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>vue 初识</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 'v-on:' or '@' 实现事件绑定 -->
+        <div :title="'120+3=' + content" @click="handleClick">
+            {{content}}
+        </div>
+        <input />
+        <div>{{content}}</div>
+    </div>
+
+    <script>
+        var App = new Vue({
+            el: "#app", // 设置挂载点
+            data: {
+                content: "123"
+            },
+            methods: {
+                handleClick: function () {
+                    // alert('123');
+                    if (this.content == '123') {
+                        this.content = '321';
+                    } else {
+                        this.content = '123';
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

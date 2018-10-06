@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<!-- TODO:adqwe -->
+<head>
+    <meta charset="utf-8" />
+    <title>属性绑定与双向数据绑定</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 'v-bind:' or ':' 实现属性绑定 -->
+        <div :title="title">Hello World!</div>
+        <!-- 'v-model' 实现双向数据绑定 -->
+        <input v-model="content" />
+        <div>{{content}}</div>
+    </div>
+
+    <script>
+        var App = new Vue({
+            el: "#app",
+            data: {
+                title: "Hello World!",
+                content: "123"
+            }
+        })
+    </script>
+</body>
+
+</html>

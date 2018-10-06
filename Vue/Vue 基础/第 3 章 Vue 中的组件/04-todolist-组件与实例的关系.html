@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TodoList</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <div>
+            <input v-model="inputValue" />
+            <button @click="handleSubmit">提交</button>
+        </div>
+        <div>
+            <ul>
+                <todo-item v-for="(item, index) of list" :key="index" :content="item"></todo-item>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Vue 中的每一个组件都是一个 Vue 实例，反之亦然
+        Vue.component('todo-item',{
+            props: ['content'],
+            template: '<li @click="handleClick">{{content}}</li>',
+            methods: {
+                handleClick: function() {
+                    alert(this.content);
+                }
+            }
+        });
+
+        new Vue({
+            el: "#root",
+            data: {
+                inputValue: '',
+                list: []
+            },
+            methods: {
+                handleSubmit: function() {
+                    this.list.push(this.inputValue);
+                    this.inputValue = '';
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

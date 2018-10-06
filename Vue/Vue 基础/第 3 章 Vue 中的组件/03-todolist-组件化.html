@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TodoList</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <div>
+            <input v-model="inputValue" />
+            <button @click="handleSubmit">提交</button>
+        </div>
+        <div>
+            <ul>
+                <!-- 父组件通过 content 属性将值传递给子组件 -->
+                <todo-item v-for="(item, index) of list" :key="index" :content="item"></todo-item>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // 定义全局组件
+        Vue.component('todo-item',{
+            // props 接收父组件传递进来的属性
+            props: ['content'],
+            // 使用传递进来的值
+            template: '<li>{{content}}</li>'
+        });
+
+        new Vue({
+            el: "#root",
+            data: {
+                inputValue: '',
+                list: []
+            },
+            methods: {
+                handleSubmit: function() {
+                    this.list.push(this.inputValue);
+                    this.inputValue = '';
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

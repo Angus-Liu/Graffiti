@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TodoList</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <div>
+            <input v-model="inputValue" />
+            <button @click="handleSubmit">提交</button>
+        </div>
+        <div>
+            <ul>
+                <!-- 通过发布订阅模式，实现父子组件之间的通信 -->
+                <!-- 父组件订阅 delete 事件 -->
+                <todo-item v-for="(item, index) of list" :key="index" :content="item" :index="index" @delete="handleDelete">
+                </todo-item>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        Vue.component('todo-item', {
+            props: ['content', 'index'],
+            template: '<li @click="handleClick">{{content}}</li>',
+            methods: {
+                handleClick: function () {
+                    // 子组件向外发布 delete 事件
+                    this.$emit('delete', this.index);
+                }
+            }
+        });
+
+        new Vue({
+            el: "#root",
+            data: {
+                inputValue: '',
+                list: []
+            },
+            methods: {
+                handleSubmit: function () {
+                    this.list.push(this.inputValue);
+                    this.inputValue = '';
+                },
+                handleDelete: function (index) {
+                    this.list.splice(index, 1);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

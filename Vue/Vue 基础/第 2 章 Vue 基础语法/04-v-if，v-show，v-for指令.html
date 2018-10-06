@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>v-if，v-show，v-for指令</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- v-if false 时移除标签，控制 dom 的存在与否 -->
+        <!-- v-show false 时标签样式为 display none，控制 dom 的显示与否 -->
+        <div v-show="show">Hello World!</div>
+        <button @click="handleClick">toggle</button>
+        <ul>
+            <!-- v-for 控制一组数据，循环显示指定的 dom 结构 -->
+            <li v-for="(item, index) of list" :key="index">{{item}}</li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#root",
+            data: {
+                show: true,
+                list: [1,2,3]
+            },
+            methods: {
+                handleClick: function () {
+                    this.show = !this.show;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
