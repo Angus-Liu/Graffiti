@@ -33,6 +33,14 @@ public class Array<E> {
         this(defaultCapacity);
     }
 
+    public Array(E[] arr) {
+        data = (E[]) new Object[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            data[i] = arr[i];
+        }
+        size = arr.length;
+    }
+
     /**
      * 返回数组中元素的个数
      *
@@ -195,7 +203,7 @@ public class Array<E> {
         // loitering objects != memory leak
         data[size] = null;
         // size 小于当前容量的四分之一时才将数组缩小一半（不要在小于一半时就减半，防止复杂度震荡），减少空间浪费
-        if (size <= data.length / 4) {
+        if (size <= data.length / 4 && data.length / 2 != 0) {
             resize(data.length / 2);
         }
         return ret;
@@ -245,6 +253,21 @@ public class Array<E> {
             newData[i] = data[i];
         }
         data = newData;
+    }
+
+    /**
+     * 交换索引 i 和索引 j 处的元素
+     *
+     * @param i
+     * @param j
+     */
+    public void swap(int i, int j) {
+        if(i < 0 || i >= size || j < 0 ||j >= size) {
+            throw new IllegalArgumentException("Index is illegal!");
+        }
+        E temp = data[i];
+        data[i] = data[j];
+        data[j] = temp;
     }
 
     @Override

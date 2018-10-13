@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
  */
 public class QueueTest {
 
-    private static int opCount = 10000;
+    private static int opCount = 100000;
 
     private static double testQueue(Queue<Integer> q, int opCount) {
         long startTime = System.nanoTime();
@@ -42,12 +42,22 @@ public class QueueTest {
     }
 
     @Test
+    public void linkedListQueue() {
+        LinkedListQueue<Integer> linkedListQueue = new LinkedListQueue<>();
+        double time = testQueue(linkedListQueue, opCount);
+        System.out.println("LinkedListQueue, time: " + time + "s");
+    }
+
+    @Test
     public void compare() {
         loopQueue();
         loopQueue();
         loopQueue();
-        arrayQueue();
-        arrayQueue();
-        arrayQueue();
+//        arrayQueue();
+//        arrayQueue();
+//        arrayQueue();
+        linkedListQueue();
+        linkedListQueue();
+        linkedListQueue();
     }
 }

@@ -51,7 +51,7 @@ public class LoopQueue<E> implements Queue<E> {
         }
         data[tail] = e;
         // 此时为循环队列，注意 tail 的计算
-        tail = (tail+1) % data.length;
+        tail = (tail + 1) % data.length;
         size++;
     }
 
@@ -66,7 +66,7 @@ public class LoopQueue<E> implements Queue<E> {
         front = (front + 1) % data.length;
         size--;
         // 判断队列的大小，进行数组的缩容操作
-        if (getSize() <= getCapacity() / 4) {
+        if (getSize() <= getCapacity() / 4 && getCapacity() / 2 != 0) {
             resize(getCapacity() / 2);
         }
         return ret;
