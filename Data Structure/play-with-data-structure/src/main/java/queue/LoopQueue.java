@@ -104,7 +104,7 @@ public class LoopQueue<E> implements Queue<E> {
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
-        res.append(String.format("Queue: size = %d, capacity = %d\n", size, getCapacity()));
+        res.append(String.format("queue: size = %d, capacity = %d\n", size, getCapacity()));
         res.append("front [");
         // 与 resize 稍有区别的遍历方法，效果相同
         for (int i = front; i != tail; i = (i + 1) % data.length) {

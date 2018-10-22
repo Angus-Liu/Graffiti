@@ -2,8 +2,6 @@ package linkedlist;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * @author Angus
  * @date 2018/10/9

@@ -17,7 +17,7 @@ public class Array<E> {
     private static int defaultCapacity = 10;
 
     /**
-     * 含参构造函数，传入的容量构造 Array
+     * 含参构造函数，传入的容量构造 array
      *
      * @param capacity
      */
@@ -27,7 +27,7 @@ public class Array<E> {
     }
 
     /**
-     * 无参构造函数，默认容量构造 Array
+     * 无参构造函数，默认容量构造 array
      */
     public Array() {
         this(defaultCapacity);
@@ -273,7 +273,7 @@ public class Array<E> {
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
-        res.append(String.format("Array: size = %d, capacity = %d\n", size, data.length));
+        res.append(String.format("array: size = %d, capacity = %d\n", size, data.length));
         res.append("[");
         for (int i = 0; i < size; i++) {
             res.append(data[i]);

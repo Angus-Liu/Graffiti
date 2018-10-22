@@ -147,7 +147,7 @@ public class LinkedList<E> {
     public void set(int index, E e) {
         // 注意 index 边界与插入时不同
         if (index < 0 || index >= size) {
-            throw new IllegalArgumentException("Set failed, Illefal index.");
+            throw new IllegalArgumentException("set failed, Illefal index.");
         }
         Node cur = dummyHead.next;
         for (int i = 0; i < index; i++) {
