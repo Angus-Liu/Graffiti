@@ -19,7 +19,9 @@ public class MergeSort<T extends Comparable<T>> implements Sort<T> {
      */
     @Override
     public void sort(T[] arr) {
-//        sort1(arr, 0, arr.length - 1);
+        // 递归实现
+//      sort1(arr, 0, arr.length - 1);
+        // 自底向上实现，迭代
         sort2(arr);
     }
 

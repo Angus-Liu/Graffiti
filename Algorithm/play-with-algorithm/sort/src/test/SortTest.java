@@ -1,6 +1,7 @@
-package sort;
+package test;
 
 import org.junit.Test;
+import sort.*;
 
 import java.util.Arrays;
 
@@ -30,6 +31,15 @@ public class SortTest {
     public void mergeSort2() {
         Integer[] arr = SortTestHelper.generateNearlyOrderedArray(20000, 0);
         SortTestHelper.testSort(new InsertionSort(), Arrays.copyOf(arr, arr.length));
+        SortTestHelper.testSort(new MergeSort(), Arrays.copyOf(arr, arr.length));
+    }
+
+    @Test
+    public void quickSort() {
+//        Integer[] arr = SortTestHelper.generateRandomArray(1000000, 1, 100000);
+//        Integer[] arr = SortTestHelper.generateNearlyOrderedArray(1000000, 0);
+        Integer[] arr = SortTestHelper.generateRandomArray(1000000, 1, 10);
+        SortTestHelper.testSort(new QuickSort(), Arrays.copyOf(arr, arr.length));
         SortTestHelper.testSort(new MergeSort(), Arrays.copyOf(arr, arr.length));
     }
 }
