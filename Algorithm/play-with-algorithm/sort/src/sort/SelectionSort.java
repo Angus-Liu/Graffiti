@@ -6,10 +6,10 @@ package sort;
  * @author Angus
  * @date 2018/10/23
  */
-public class SelectionSort<T extends Comparable<T>> implements Sort<T> {
+public class SelectionSort implements Sort {
 
     @Override
-    public void sort(T[] arr) {
+    public void sort(Comparable[] arr) {
         for (int i = 0; i < arr.length; i++) {
             // 保留每一次遍历时的最小值对应的索引
             int minIndex = i;

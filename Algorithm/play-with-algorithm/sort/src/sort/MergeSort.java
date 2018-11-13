@@ -8,34 +8,34 @@ import java.util.Arrays;
  * @author Angus
  * @date 2018/10/25
  */
-public class MergeSort<T extends Comparable<T>> implements Sort<T> {
+public class MergeSort implements Sort {
 
-    private InsertionSort<T> insertionSort = new InsertionSort<>();
+    private InsertionSort insertionSort = new InsertionSort();
 
     /**
-     *
+     * 归并排序
      *
      * @param arr
      */
     @Override
-    public void sort(T[] arr) {
-        // 递归实现
-//      sort1(arr, 0, arr.length - 1);
+    public void sort(Comparable[] arr) {
+        // 自顶向下实现，递归
+         topDownSort(arr, 0, arr.length - 1);
         // 自底向上实现，迭代
-        sort2(arr);
+//        bottomUpSort(arr);
     }
 
     /**
-     * 递归使用归并排序，对 arr[l...r] 的范围进行排序
+     * 自顶向下，递归方式。对 arr[l...r] 的范围进行排序
      *
      * @param arr 待排序数组
      * @param l   待排序部分的开始索引
      * @param r   待排序部分的结尾索引
      */
-    private void sort1(T[] arr, int l, int r) {
-//        if (l >= r) {
-//            return;
-//        }
+    private void topDownSort(Comparable[] arr, int l, int r) {
+        // if (l >= r) {
+        //   return;
+        // }
         // 优化，在划分到一定范围时（近乎有序），使用插入排序来提高效率
         if (r - l <= 15) {
             insertionSort.sort(arr, l, r);
@@ -44,8 +44,8 @@ public class MergeSort<T extends Comparable<T>> implements Sort<T> {
         // 进行归并排序
         int mid = l + (r - l) / 2;
         // 将待排序数组继续划分，排序
-        sort1(arr, l, mid);
-        sort1(arr, mid + 1, r);
+        topDownSort(arr, l, mid);
+        topDownSort(arr, mid + 1, r);
         // 优化，只有左边最大值大于右边最小值才进行合并，否者直接是有序的
         if (arr[mid].compareTo(arr[mid + 1]) > 0) {
             // 归并
@@ -55,16 +55,18 @@ public class MergeSort<T extends Comparable<T>> implements Sort<T> {
 
 
     /**
-     * 归并排序，自底向上排序
+     * 自底向上，迭代方式
+     *
+     * @param arr 待排序数组
      */
-    private void sort2(T[] arr) {
+    private void bottomUpSort(Comparable[] arr) {
         int n = arr.length;
         // 自底向上归并的区间每次扩大一倍
         for (int size = 1; size < n; size += size) {
             // 每次是两个小区间进行合并
             for (int i = 0; i + size < n; i += size + size) {
                 // 对 arr[i...i+size-1] 和 arr[i+size...i+size+size-1]进行归并
-                merge(arr, i, i + size - 1, min(i + size + size - 1, n - 1));
+                merge(arr, i, i + size - 1, Math.min(i + size + size - 1, n - 1));
             }
         }
     }
@@ -104,10 +106,6 @@ public class MergeSort<T extends Comparable<T>> implements Sort<T> {
                 }
             }
         }
-    }
-
-    private int min(int num1, int num2) {
-        return num1 <= num2 ? num1 : num2;
     }
 
     private void showMergeInfo(Comparable[] arr, int l, int mid, int r, Comparable[] temp) {

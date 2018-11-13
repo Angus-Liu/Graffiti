@@ -6,12 +6,12 @@ package sort;
  * @author Angus
  * @date 2018/10/26
  */
-public class QuickSort<T extends Comparable<T>> implements Sort<T> {
+public class QuickSort implements Sort {
 
-    private InsertionSort<T> insertionSort = new InsertionSort<>();
+    private InsertionSort insertionSort = new InsertionSort();
 
     @Override
-    public void sort(T[] arr) {
+    public void sort(Comparable[] arr) {
         sort2(arr, 0, arr.length - 1);
     }
 
@@ -25,11 +25,11 @@ public class QuickSort<T extends Comparable<T>> implements Sort<T> {
      * @param r
      * @return
      */
-    private int partition1(T[] arr, int l, int r) {
+    private int partition1(Comparable[] arr, int l, int r) {
         // 随机在arr[l...r]的范围中, 选择一个数值作为标定点pivot
         // 保证在数组近乎有序的情况下也能良好完成排序
         SortTestHelper.swap(arr, l, (int) (Math.random() * (r - l + 1)) + l);
-        T v = arr[l];
+        Comparable v = arr[l];
         // j 指向小于 v 的（前半段）的最后一个值
         int j = l;
         for (int i = l; i <= r; i++) {
@@ -51,9 +51,9 @@ public class QuickSort<T extends Comparable<T>> implements Sort<T> {
      * @param r
      * @return
      */
-    private int partition2(T[] arr, int l, int r) {
+    private int partition2(Comparable[] arr, int l, int r) {
         SortTestHelper.swap(arr, l, (int) (Math.random() * (r - l + 1)) + l);
-        T v = arr[l];
+        Comparable v = arr[l];
         // arr[l+1..i] <= v; arr[j...r] >= v
         int i = l + 1;
         int j = r;
@@ -83,7 +83,7 @@ public class QuickSort<T extends Comparable<T>> implements Sort<T> {
      * @param l   排序左边界（含）
      * @param r   排序右边界（含）
      */
-    private void sort1(T[] arr, int l, int r) {
+    private void sort1(Comparable[] arr, int l, int r) {
 //        if (l >= r) {
 //            return;
 //        }
@@ -104,7 +104,7 @@ public class QuickSort<T extends Comparable<T>> implements Sort<T> {
      * @param l
      * @param r
      */
-    private void sort2(T[] arr, int l, int r) {
+    private void sort2(Comparable[] arr, int l, int r) {
         if (r - l <= 15) {
             insertionSort.sort(arr, l, r);
             return;
@@ -112,7 +112,7 @@ public class QuickSort<T extends Comparable<T>> implements Sort<T> {
         // partition
         // arr[l=1...lt] < v = arr[lt+1...i] < arr[gt...r]
         SortTestHelper.swap(arr, l, (int) (Math.random() * (r - l + 1)) + l);
-        T v = arr[l];
+        Comparable v = arr[l];
 
         // arr[l+1...lt] < v
         int lt = l;

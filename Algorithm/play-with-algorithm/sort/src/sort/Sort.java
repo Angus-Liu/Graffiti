@@ -5,11 +5,11 @@ package sort;
  * @date 2018/10/23
  */
 @FunctionalInterface
-public interface Sort<T extends Comparable<T>> {
+public interface Sort {
     /**
      * 排序方法
      *
      * @param arr 待排序数组
      */
-    void sort(T[] arr);
+    void sort(Comparable[] arr);
 }

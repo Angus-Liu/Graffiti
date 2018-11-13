@@ -6,12 +6,12 @@ package sort;
  * @author Angus
  * @date 2018/10/23
  */
-public class InsertionSort<T extends Comparable<T>> implements Sort<T> {
+public class InsertionSort implements Sort {
     @Override
-    public void sort(T[] arr) {
+    public void sort(Comparable[] arr) {
         for (int i = 0; i < arr.length; i++) {
             // 寻找元素 arr[i] 合适的插入位置
-            T e = arr[i];
+            Comparable e = arr[i];
             int j;
             // 插入排序在数据较为有序的情况下效率极高
             for (j = i; j > 0 && e.compareTo(arr[j - 1]) < 0; j--) {
@@ -30,10 +30,10 @@ public class InsertionSort<T extends Comparable<T>> implements Sort<T> {
      * @param l   左边界（含）
      * @param r   右边界（含）
      */
-    public void sort(T[] arr, int l, int r) {
+    public void sort(Comparable[] arr, int l, int r) {
         for (int i = l; i <= r; i++) {
             // 寻找元素 arr[i] 合适的插入位置
-            T e = arr[i];
+            Comparable e = arr[i];
             int j;
             // 插入排序在数据较为有序的情况下效率极高
             for (j = i; j > 0 && e.compareTo(arr[j - 1]) < 0; j--) {
