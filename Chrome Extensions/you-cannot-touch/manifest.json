@@ -1,0 +1,12 @@
+{
+    "manifest_version": 2,
+    "name": "永远点不到",
+    "version": "1.0",
+    "description": "让你永远点不到百度搜索按钮的插件",
+    "content_scripts": [
+        {
+            "matches": ["*://www.baidu.com/"],
+            "js": ["js/cannot_touch.js"]
+        }
+    ]
+}
