@@ -1,0 +1,14 @@
+{
+    "manifest_version": 2,
+    "name": "消息发送与接收 DEMO",
+    "version": "1.0",
+    "description": "消息发送与接收 DEMO",
+    "browser_action" : {
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "scripts": [
+            "js/background.js"
+        ]
+    }
+}

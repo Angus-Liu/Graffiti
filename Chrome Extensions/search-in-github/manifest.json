@@ -1,0 +1,20 @@
+{
+    "manifest_version": 2,
+    "name": "Search in github",
+    "version": "1.0",
+    "description": "在 github 中进行搜索",
+    "background": {
+        "scripts": [
+            "js/background.js"
+        ]
+    },
+    "icons": {
+        "16": "images/icon16.png"
+    },
+    "omnibox": {
+        "keyword": "github"
+    },
+    "permissions": [
+        "*://github.com/*"
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "manifest_version": 2,
+    "name": "谷歌翻译",
+    "version": "1.0",
+    "description": "一款翻译小插件",
+    "background": {
+        "scripts": [
+            "js/background.js"
+        ]
+    },
+    "icons": {
+        "16": "images/icon16.png"
+    },
+    "permissions": [
+        "contextMenus"
+    ]
+}
