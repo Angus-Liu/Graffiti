@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <child-component>
+        <!-- slot 分发的内容作用域为父组件 -->
+        <p v-show="show">父组件向子组件插入的内容</p>
+        <p>父组件向子组件插入的内容</p>
+        <p>父组件向子组件插入的内容</p>
+    </child-component>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  var bus = new Vue();
+
+  Vue.component('child-component', {
+    template:
+      `<div>
+        <slot>
+            <p>如果父组件没有插入内容，我将作为默认实现</p>
+        </slot>
+      </div>`,
+    data() {
+      return {
+        show: "true"
+      }
+    }
+  });
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      show: false
+    }
+  });
+</script>
+</body>
+</html>

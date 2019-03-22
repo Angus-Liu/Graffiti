@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <label>
+        First Name: <input type="text" v-model="firstName">
+    </label>
+    <label>
+        Last Name: <input type="text" v-model="lastName">
+    </label>
+    <label>
+        Full Name: <input type="text" v-model="fullName">
+    </label>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      firstName: '',
+      lastName: '',
+    },
+    computed: {
+      fullName: {
+        get() {
+          return this.firstName + ' ' + this.lastName;
+        },
+
+        set(value) {
+          let names = value.split(' ');
+          if (names.length >= 2) {
+            this.firstName = names[0];
+            this.lastName = names[names.length - 1];
+          }
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>

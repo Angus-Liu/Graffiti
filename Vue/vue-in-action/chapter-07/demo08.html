@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <div>num = {{num}}</div>
+    <my-component :initcount="num"></my-component>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  Vue.component('my-component', {
+    props: ['initcount'],
+    template:
+      `<div>
+        <div>count = {{ count }}</div>
+        <button @click="count++">+</button>
+      </div>`,
+    data() {
+      return {
+        count: this.initcount
+      }
+    }
+  });
+  const app = new Vue({
+    el: '#app',
+    data: {
+      num: 1
+    }
+  });
+</script>
+</body>
+</html>

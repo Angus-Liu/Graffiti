@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button @click="users.push({name: 'Angus', age: 23, date: new Date()})">添加用户</button>
+    <button @click="users.shift()">删除用户</button>
+    <ol>
+        <li v-for="(user, index) in users" :key="index">
+            第 {{index + 1}} 位用户
+            <ul>
+                <li v-for="(value, key ,index) in user">
+                    {{index}} - {{key}} : {{value}}
+                </li>
+            </ul>
+        </li>
+    </ol>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      users: [
+        {name: 'Angus', age: 23, date: new Date()},
+        {name: 'Angus', age: 23, date: new Date()},
+        {name: 'Angus', age: 23, date: new Date()}
+      ]
+    }
+  });
+
+  app.$set(app.users, 0, {name: 'Anguang', age: 23, date: new Date()},);
+</script>
+</body>
+</html>

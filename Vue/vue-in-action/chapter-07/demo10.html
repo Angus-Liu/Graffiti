@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{message}}
+    <my-component @message="handleMessage"></my-component>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  Vue.component('my-component', {
+    props: ['initcount'],
+    template:
+      `<div>
+        <button @click="handleEvent">通知父组件</button>
+      </div>`,
+    methods: {
+      handleEvent() {
+        this.$emit("message", '来自子组件的内容');
+      }
+    }
+  });
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: ''
+    },
+    methods: {
+      handleMessage(msg) {
+        this.message = msg;
+      }
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button @click="handleRef" ref="btn">通过 ref 获取子组件实例</button>
+    父组件内容：{{message}}
+    <my-component ref="mc"></my-component>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  var bus = new Vue();
+
+  Vue.component('my-component', {
+    template:
+      `<div>
+        子组件内容：{{message}}
+      </div>`,
+    data() {
+      return {
+        message: '我是子组件的 message'
+      }
+    }
+  });
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '我是原组件内容'
+    },
+    methods: {
+      handleRef() {
+        this.message = this.$refs.mc.message;
+        console.log(this.$refs.btn);
+        console.log(this.$refs.mc);
+      }
+    }
+  });
+</script>
+</body>
+</html>

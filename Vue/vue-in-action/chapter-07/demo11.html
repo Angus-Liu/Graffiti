@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{message}}
+    <my-component></my-component>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  var bus = new Vue();
+
+  Vue.component('my-component', {
+    props: ['initcount'],
+    template:
+      `<div>
+        <button @click="handleEvent">通知其他组件</button>
+      </div>`,
+    methods: {
+      handleEvent() {
+        bus.$emit("message", '来自 my-component 组件的内容');
+      }
+    }
+  });
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '原组件内容'
+    },
+    mounted() {
+      bus.$on('message', msg => this.message = msg);
+    }
+  });
+</script>
+</body>
+</html>

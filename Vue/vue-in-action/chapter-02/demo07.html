@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button @click="handleClose">点击按钮</button>
+    <button @click="show = !show">点击按钮</button>
+    <p v-if="show">点击按钮可以控制这段文本的显示</p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      show: true
+    },
+    methods: {
+      handleClose() {
+        this.show = !this.show;
+      },
+      showLog() {
+        console.log('实例已挂载');
+      }
+    },
+    mounted() {
+      console.log(this.$el);
+      this.showLog();
+    }
+  });
+
+  app.showLog();
+</script>
+</body>
+</html>

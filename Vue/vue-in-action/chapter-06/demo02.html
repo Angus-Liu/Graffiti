@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <label>
+        <input type="radio" v-model="picked" value="html">
+        HTML
+    </label>
+    <label>
+        <input type="radio" v-model="picked" value="js">
+        JavaScript
+    </label>
+    <label>
+        <input type="radio" v-model="picked" value="css">
+        CSS
+    </label>
+    <p>你的选择是：{{ picked }}</p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      picked: 'html'
+    }
+  });
+</script>
+</body>
+</html>

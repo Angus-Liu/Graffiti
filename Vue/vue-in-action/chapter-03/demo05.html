@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <button @click="show = !show">点击</button>
+    <div v-if="show">
+        {{ computedNow }}
+    </div>
+    <div v-if="show">
+        {{ methodNow() }}
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      show: true
+    },
+    computed: {
+      computedNow() {
+        return Date.now();
+      }
+    },
+    methods: {
+      methodNow() {
+        return Date.now();
+      }
+    }
+  });
+</script>
+</body>
+</html>

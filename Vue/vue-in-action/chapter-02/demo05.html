@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{ date | formatDate }}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+  function padDate(value) {
+    return String(value).padStart(2, '0');
+  }
+
+  new Vue({
+    el: '#app',
+    data: {
+      date: new Date()
+    },
+    filters: {
+      formatDate(value) { // value 就是需要过滤的数据
+        let date = new Date(value);
+        let year = date.getFullYear();
+        let month = padDate(date.getMonth());
+        let day = padDate(date.getDay());
+        let hours = padDate(date.getHours());
+        let minutes = padDate(date.getMinutes());
+        let seconds = padDate(date.getSeconds());
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+      }
+    },
+    mounted() {
+      this.timer = setInterval(() => {
+        this.date = new Date();
+      }, 1000);
+    },
+    beforeDestroy() {
+      if (this.timer) {
+        clearInterval(this.timer);
+      }
+    }
+  });
+</script>
+</body>
+</html>

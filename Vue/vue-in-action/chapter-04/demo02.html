@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .static {
+            margin-top: 1em;
+            background: aquamarine;
+            width: 10em;
+            height: 10em;
+        }
+
+        .active {
+            background: red;
+        }
+
+        .big {
+            width: 20em;
+            height: 20em;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <button @click="isActive = !isActive">isActive</button>
+    <button @click="isBig = !isBig">isBig</button>
+    <div class="static" :class="classes"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      isActive: true,
+      isBig: true
+    },
+    computed: {
+      classes() {
+        return {'active': this.isActive, 'big': this.isBig};
+      }
+    }
+  });
+</script>
+</body>
+</html>

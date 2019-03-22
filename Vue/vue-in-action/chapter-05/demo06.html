@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <a href="https://www.baidu.com" @click="handleClick($event)">百度一下</a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    methods: {
+      handleClick(event) {
+        event.preventDefault();
+        console.log("点击了链接");
+      }
+    }
+  });
+
+</script>
+</body>
+</html>
