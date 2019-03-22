@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="para" style="position: relative">This page turns when you hold the V key.</p>
+
+<script>
+
+  let para = document.getElementById("para");
+
+  let t = 1;
+  let l = 1;
+
+  window.addEventListener("keydown", event => {
+    console.log(event.key);
+    switch (event.key) {
+      case "w": {
+        para.style.top = --t + "px";
+        break;
+      }
+      case "s": {
+        if (event.altKey) {
+         t += 10;
+        }
+        para.style.top = ++t + "px";
+        break;
+      }
+      case "a": {
+        para.style.left = --l + "px";
+        break;
+      }
+      case "d": {
+        para.style.left = ++l + "px";
+        break;
+      }
+      default: {
+      }
+    }
+  });
+
+  window.addEventListener("keydown", event => {
+    if (event.key == "v") {
+      document.body.style.background = "violet";
+    }
+  });
+  window.addEventListener("keyup", event => {
+    if (event.key == "v") {
+      document.body.style.background = "";
+    }
+  });
+</script>
+</body>
+</html>

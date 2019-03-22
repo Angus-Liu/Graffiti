@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="http://ww.baidu.com">MDN</a>
+
+<script>
+    let link = document.querySelector("a");
+    link.addEventListener("click", evt => {
+      console.log("Nope.");
+      event.preventDefault();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Drag the bar to changes its width</p>
+<div style="background: orange; width: 60px; height: 20px"></div>
+<script>
+    let lastX;
+    let lastY;
+    let bar = document.querySelector("div");
+    bar.addEventListener("mousedown", event => {
+      if (event.button === 0) {
+        lastX = event.clientX;
+        lastY = event.clientY;
+        window.addEventListener("mousemove", moved);
+        event.preventDefault();
+      }
+    });
+
+    function moved(event) {
+      if (event.buttons === 0) {
+        window.removeEventListener("mousemove", moved);
+      }  else {
+        let dist1 = event.clientX - lastX;
+        let dist2 = event.clientY - lastY;
+        let newWidth = Math.max(10, bar.offsetWidth + dist1);
+        let newHeight = Math.max(10, bar.offsetHeight + dist2);
+        bar.style.width = newWidth + "px";
+        bar.style.height = newHeight + "px";
+        lastX = event.clientX;
+        lastY = event.clientY;
+      }
+    }
+</script>
+</body>
+</html>

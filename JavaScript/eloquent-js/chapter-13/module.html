@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>My home page</h1>
+<p>HELLO....</p>
+<p>
+    This is a link
+    <a href="http://www.demo.com">www.demo.com</a>
+</p>
+<script>
+  function talksAbout(node, string) {
+    if (node.nodeType === document.ELEMENT_NODE) {
+      // node.childNodes.forEach(childNode => {
+      //   console.log(childNode);
+      //   if (talksAbout(childNode, string)) {
+      //     return true;
+      //   }
+      // });
+      for (let i = 0; i < node.childNodes.length; i++) {
+        console.log(node.childNodes[i]);
+        if (talksAbout(node.childNodes[i], string)) {
+          return true;
+        }
+      }
+      return false;
+    } else if (node.nodeType === document.TEXT_NODE) {
+      return node.nodeValue.indexOf(string) > -1;
+    }
+  }
+
+  let link = document.body.getElementsByTagName("a")[0];
+  console.log(link.href);
+
+    let paragraphs = document.body.getElementsByTagName("p");
+    document.body.insertBefore(paragraphs[1], paragraphs[0]);
+
+</script>
+</body>
+</html>

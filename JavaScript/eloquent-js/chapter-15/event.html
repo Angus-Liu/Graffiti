@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Click this document to activate the handler.</p>
+<script>
+
+    let para = document.querySelector("p");
+
+    function click() {
+      console.log("You knocked.");
+      para.removeEventListener("click", click);
+    }
+
+    para.addEventListener("click", click);
+</script>
+</body>
+</html>

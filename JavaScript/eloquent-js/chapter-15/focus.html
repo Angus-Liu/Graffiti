@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label>
+    Name: <input type="text" data-help="Your full name">
+</label>
+<label>
+    Age: <input type="text" data-help="Your age in years">
+</label>
+
+<p id="help"></p>
+
+<script>
+    let help = document.getElementById("help");
+    let fields = document.querySelectorAll("input");
+    fields.forEach(field => {
+      field.addEventListener("focus", evt => {
+        let text = evt.target.getAttribute("data-help");
+        help.textContent = text;
+      });
+      field.addEventListener("blur", evt => {
+        help.textContent = "";
+      });
+    });
+</script>
+</body>
+</html>

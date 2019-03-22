@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p style="text-align: center">
+    <img src="img/avatar.png" style="position: relative" alt="avatar">
+</p>
+
+<script>
+    let cat = document.querySelector("img");
+    let angle = Math.PI / 2;
+    function animate(time, lastTime) {
+      if (lastTime != null) {
+        angle += (time - lastTime) * 0.002;
+      }
+      cat.style.top = (Math.sin(angle) * 20) + "px";
+      cat.style.left = (Math.cos(angle) * 200) + "px";
+      requestAnimationFrame(newTime => animate(newTime, time));
+    }
+    requestAnimationFrame(animate);
+</script>
+</body>
+</html>

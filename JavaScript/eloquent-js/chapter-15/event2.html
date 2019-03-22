@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button>Click me any way you want!</button>
+<script>
+  let button = document.querySelector("button");
+  button.addEventListener("mousedown", event => {
+    switch (event.button) {
+      case 0:
+        console.log("Left button");
+        break;
+      case 1:
+        console.log("Middle button");
+        break;
+      case 2:
+        console.log("Right button");
+        break;
+      default:
+    }
+    console.log(event.target);
+    if (event.button === 2) {
+      // 阻止事件传播
+      event.stopPropagation();
+    }
+  });
+  document.addEventListener("mousedown", () => {
+    console.log("测试事件传播");
+  });
+</script>
+</body>
+</html>

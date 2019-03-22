@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label for="purple">
+    <input type="checkbox" id="purple"> Make this page purple.
+</label>
+
+<script>
+    let checkbox = document.getElementById("purple");
+    checkbox.addEventListener("change", () => {
+      document.body.style.background = checkbox.checked? "mediumpurple" : "";
+    });
+</script>
+</body>
+</html>

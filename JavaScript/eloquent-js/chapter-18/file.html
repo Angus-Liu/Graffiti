@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="file">
+<script>
+  let input = document.querySelector("input");
+  input.addEventListener("change", () => {
+    if (input.files.length > 0) {
+      let file = input.files[0];
+      console.log("You chose ", file.name);
+      console.log(Math.ceil(file.size / 1024 / 1024) + "MB");
+      if (file.type) {
+        console.log("It's Type: " + file.type);
+      }
+    }
+  });
+</script>
+</body>
+</html>
