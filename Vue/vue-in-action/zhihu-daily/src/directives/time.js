@@ -61,15 +61,15 @@ let Time = {
   }
 };
 
-Vue.directive('time', {
-  bind(el, binding) {
-    el.innerHTML = Time.getFormatTime(binding.value);
+export default {
+  bind: function (el, binding) {
+    el.innerHTML = Time.getFormatTime(binding.value * 1000);
     el.__timeout__ = setInterval(() =>
-      el.innerHTML = Time.getFormatTime(binding.value), 60000);
+      el.innerHTML = Time.getFormatTime(binding.value  * 1000), 60000);
   },
 
-  unbind(el) {
+  unbind: function (el) {
     clearInterval(el.__timeout__);
     delete el.__timeout__;
   }
-});
+};
