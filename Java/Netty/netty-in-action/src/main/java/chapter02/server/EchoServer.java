@@ -7,7 +7,6 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.net.InetSocketAddress;
 
@@ -19,15 +18,11 @@ public class EchoServer {
 
     private final int PORT = 8888;
 
-    public static void main(String[] args) throws Exception {
-        new EchoServer().start();
-    }
-
     public void start() throws Exception {
         final EchoServerHandler serverHandler = new EchoServerHandler();
-        // 创建 EventLoopGroup
+        // 创建 EventLoopGroup，以进行事件的处理，如接收新连接以及读写数据
         EventLoopGroup group = new NioEventLoopGroup();
-        // 创建 ServerBootstrap
+        // 创建 ServerBootstrap 引导和绑定服务器
         ServerBootstrap bootstrap = new ServerBootstrap();
         bootstrap.group(group)
                 // 指定所使用的 NIO 传输 Channel
@@ -51,6 +46,10 @@ public class EchoServer {
             // 关闭 EventLoopGroup，释放所有资源
             group.shutdownGracefully().sync();
         }
-
     }
+
+    public static void main(String[] args) throws Exception {
+        new EchoServer().start();
+    }
+
 }
