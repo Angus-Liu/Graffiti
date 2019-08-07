@@ -1,6 +1,4 @@
-package chapter02
-
-import java.util.*
+package ch02
 
 fun fizzBuzz(i: Int) = when {
     i % 15 == 0 -> "FizzBuzz "

@@ -1,4 +1,4 @@
-package chapter02
+package ch02
 
 
 fun max(a: Int, b: Int): Int {

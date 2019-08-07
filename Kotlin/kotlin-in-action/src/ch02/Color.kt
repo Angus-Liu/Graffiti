@@ -1,4 +1,4 @@
-package chapter02
+package ch02
 
 import java.lang.Exception
 

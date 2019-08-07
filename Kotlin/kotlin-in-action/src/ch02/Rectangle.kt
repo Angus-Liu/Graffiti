@@ -1,4 +1,4 @@
-package chapter02
+package ch02
 
 class Rectangle(val height: Int, val width: Int) {
     val isSquare: Boolean
