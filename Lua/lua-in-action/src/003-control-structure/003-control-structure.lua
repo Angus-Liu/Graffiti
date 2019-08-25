@@ -106,3 +106,19 @@ for i=1, 3 do
     ::continue::
     print([[i'm end]])
 end
+
+local function process(input)
+    print("the input is", input)
+    if input < 2 then
+        goto failed
+    end
+    -- 更多处理流程和 goto err
+
+    print("processing...")
+    do return end
+    ::failed::
+    print("handle error with input", input)
+end
+
+process(1)
+process(3)
