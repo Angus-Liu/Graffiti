@@ -1,0 +1,7 @@
+OpenResty 第六次作业
+
+1、打印 http 请求的请求 url、方法、querystring、POST 请求中的 json body，如果 json  body 的大小大于 100 字节，返回 413 状态码
+
+2、Redis 的使用
+使用 Redis 计数，接口 /testMe 每访问一次，count + 1，在 body 中用 json 返回 count 的次数和当前时间（yyyy-MM-dd HH:mm:ss) 
+{ "count: 123, "now": "2019-09-09 09:09:09"}
