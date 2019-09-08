@@ -1,0 +1,15 @@
+golang  第 1 次作业：
+1、完成 go 环境搭建，设置 GOPATH，选一个你喜欢的 IDE（推荐 jetbrains 的 Goland 或者 VSCode）
+IDEA + go插件 = Goland
+
+2、使用 fmt 包的 Println 打印 "Hello, golang"
+
+3、写出 GOPATH 的作用
+GOPATH 是 GO 的工作空间（workspace）。在 GOPATH 指定的工作目录下，代码总是会保存在 $GOPATH/src 目录下。
+在工程经过 go build、go install 或 go get 等指令后，会将产生的二进制可执行文件放在 $GOPATH/bin 目录下，
+生成的中间缓存文件会被保存在 $GOPATH/pkg 下。
+
+4、使用 go build、fmt、run 命令
+
+5、说说你搜到的 plan9 汇编的资料
+go 之所以采用 plan9 汇编，或许在于其设计人员也是 plan9 系统的创造者的原因吧
