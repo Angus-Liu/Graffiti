@@ -1,0 +1,27 @@
+Golang 第四次作业来了，这次很简单，但你肯定答不对。哈哈哈
+
+1、下面的代码会输出什么？原因是什么？
+var m map[string]float64
+m["pi"] = 3.1416
+println(m)
+
+2、下面的代码会输出什么？原因是什么？
+func Foo(a [2]int) {
+    a[0] = 8
+}
+
+func main() {
+    a := [2]int{1, 2}
+    Foo(a)
+    fmt.Println(a)
+}
+
+3、下面的代码会发生什么？原因是什么？
+const n = 9876543210 * 9876543210
+fmt.Println(n)
+
+
+解答：
+1.输出"panic: assignment to entry in nil map"。仅声明，而未初始化时，会创建一个 nil map。nil map 不能用来存放键值对，可以使用make函数进行初始化。
+2.输出"[1 2]"。Go中数组默认按值传递，对于数组，若想通过修改行参改变实参，可以借助指针或 slice。
+3.输出"constant 97546105778997104100 overflows int"。数字量不显示声明类型时，默认为 int（int32最大值为2147483647，int64最大值为9223372036854775807），故报错。改为"const n float64= 9876543210 * 9876543210"可避免。
