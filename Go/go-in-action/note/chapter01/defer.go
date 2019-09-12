@@ -1,4 +1,4 @@
-package chapter01
+package main
 
 func test(x int) {
 	i := 1 / x
