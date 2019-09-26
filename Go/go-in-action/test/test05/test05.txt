@@ -1,0 +1,63 @@
+Go 训练营第五次作业
+
+汇编基础：
+1、CPU 由哪几部分组成？
+答：控制器、运算器、寄存器
+
+2、X86-64 通用寄存器有哪些
+答：RAX、RBX、RCX、RDX、RSI、RDI、RBP、RSP、R8、R9、R10、R11、R12、R13、R14、R15
+
+3、怎么查看下面 C 函数对应的汇编代码是什么？
+int foo() {
+    return 123;
+}
+答：使用gcc -S 命令生成.s文件，即可获得对应的汇编代码。
+
+Go 相关：
+1、如何格式化当前时间为 yyyy-MM-dd HH:mm:ss 的格式？
+答：now := time.Now()
+  	// 第一种方法：go定义了一些常量来作为layout
+  	now1 := now.Format("2006-01-02 15:04:05")
+  	// 第二种方法
+  	now2 := fmt.Sprintf("%d-%02d-%02d %02d:%02d:%02d", now.Year(), now.Month(), now.Day(), now.Hour(), now.Minute(), now.Second())
+
+2、如何格式化字符串
+答：可采用fmt.Sprintf()函数实现。
+
+3、字符串如何拼接
+答：直接使用'+'拼接；通过fmt.Sprintf()函数；通过strings.Join()函数；通过buffer.WriteString()函数
+
+4、如何打开一个文件读取其中的内容输出到终端，并关闭文件
+答：方式有多种，以下是其中一种：
+func main() {
+	file, err:= os.Open("test/test05/test.c")
+	if err != nil {
+		fmt.Println("open file error")
+		return
+	}
+	// 延迟调用，关闭文件
+	defer file.Close()
+	bytes, err := ioutil.ReadAll(file)
+	if err != nil {
+		fmt.Println("read file error")
+		return
+	}
+	fmt.Println(string(bytes))
+}
+
+5、Go 面向对象中的的组合是什么意思？有什么作用
+答：Go并不是传统意义上的面向对象编程语言，或者说仅实现了最小面向对象机制。
+组合即指在结构体中匿名嵌入其他类型，通过组合使得该结构体对象可以直接引用匿名字段（或称嵌入类型）中的成员。
+
+6、Go 方法和字段的可见性规则是什么？如何用 json 序列化一个对象输出
+{"id":1, "name": "hello"}
+答：所有成员在包内均可访问，无论是否在同一源码文件中。但只有名称首字母大写的为可导出成员，在包外可见。
+因为可见性原因，需要借助字段标签（tag）才能正确的序列化：
+    d := struct {
+        Id   int    `json:"id"`
+        Name string `json:"name"`
+    }{1, "hello"}
+    bytes, _ := json.Marshal(d)
+    fmt.Println(string(bytes))
+
+
