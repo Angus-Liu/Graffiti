@@ -1,6 +1,5 @@
 package com.angus.zookeeper.chapter03.m3;
 
-import lombok.extern.slf4j.Slf4j;
 import org.apache.zookeeper.*;
 
 import java.io.IOException;

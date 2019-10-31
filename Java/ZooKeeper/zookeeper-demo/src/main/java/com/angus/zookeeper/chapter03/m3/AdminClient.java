@@ -1,13 +1,11 @@
 package com.angus.zookeeper.chapter03.m3;
 
-import lombok.extern.slf4j.Slf4j;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.data.Stat;
 
-import java.util.Arrays;
 import java.util.Date;
 
 /**
