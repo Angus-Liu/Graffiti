@@ -9,7 +9,7 @@ import java.util.Random;
 import static org.apache.zookeeper.ZooDefs.Ids.OPEN_ACL_UNSAFE;
 
 /**
- * 异步方式实现
+ * 主节点 - 异步方式实现
  *
  * @author angus
  * @date 2019/10/26
