@@ -12,7 +12,6 @@ import java.util.Random;
  * @author angus
  * @date 2019/10/31
  */
-@Slf4j
 public class Worker implements Watcher {
 
     private ZooKeeper zooKeeper;
@@ -27,7 +26,7 @@ public class Worker implements Watcher {
 
     @Override
     public void process(WatchedEvent event) {
-        log.info(event.toString() + ", " + hostPort);
+        System.out.println(event.toString() + ", " + hostPort);
     }
 
     private void startZK() throws IOException {
@@ -37,16 +36,16 @@ public class Worker implements Watcher {
     private AsyncCallback.StringCallback createWorkerCallback = (rc, path, ctx, name) -> {
         switch (KeeperException.Code.get(rc)) {
             case OK:
-                log.info("Registered successfully: " + serverId);
+                System.out.println("Registered successfully: " + serverId);
                 break;
             case CONNECTIONLOSS:
                 register();
                 break;
             case NODEEXISTS:
-                log.warn("Already registered: " + serverId);
+                System.out.println("Already registered: " + serverId);
                 break;
             default:
-                log.error("Error: " + KeeperException.create(KeeperException.Code.get(rc), path));
+                System.out.println("Error: " + KeeperException.create(KeeperException.Code.get(rc), path));
         }
     };
 

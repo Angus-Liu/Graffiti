@@ -11,7 +11,6 @@ import static org.apache.zookeeper.ZooDefs.Ids.OPEN_ACL_UNSAFE;
  * @author angus
  * @date 2019/10/31
  */
-@Slf4j
 public class Client implements Watcher {
 
     private ZooKeeper zooKeeper;
@@ -23,7 +22,7 @@ public class Client implements Watcher {
 
     @Override
     public void process(WatchedEvent event) {
-        log.info(event.toString());
+        System.out.println(event);
     }
 
     private void startZK() throws Exception {
@@ -50,6 +49,6 @@ public class Client implements Watcher {
         Client client = new Client("127.0.0.1:2181");
         client.startZK();
         String name = client.queueCommand("get a service");
-        log.info("Created " + name);
+        System.out.println("Created " + name);
     }
 }
