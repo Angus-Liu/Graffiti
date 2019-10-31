@@ -2,6 +2,7 @@ package com.angus.zookeeper.chapter03.m3;
 
 import org.apache.zookeeper.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -66,6 +67,10 @@ public class Master implements Watcher {
         }
     };
 
+    private void runForMaster() {
+        zooKeeper.create(masterZnode, serverId.getBytes(), OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL, masterCreateCallback, null);
+    }
+
     private AsyncCallback.DataCallback masterCheckCallback = (rc, path, ctx, data, stat) -> {
         switch (KeeperException.Code.get(rc)) {
             case CONNECTIONLOSS:
@@ -77,12 +82,38 @@ public class Master implements Watcher {
         }
     };
 
-    private void runForMaster() {
-        zooKeeper.create(masterZnode, serverId.getBytes(), OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL, masterCreateCallback, null);
-    }
-
     private void checkMaster() {
         zooKeeper.getData(masterZnode, false, masterCheckCallback, null);
+    }
+
+    private AsyncCallback.StringCallback createParentCallback = new AsyncCallback.StringCallback() {
+        @Override
+        public void processResult(int rc, String path, Object ctx, String name) {
+            switch (KeeperException.Code.get(rc)) {
+                case OK:
+                    System.out.println("Parent created");
+                    break;
+                case CONNECTIONLOSS:
+                    createParent(path, (byte[]) ctx);
+                    break;
+                case NODEEXISTS:
+                    System.out.println("Parent already registered: " + path);
+                    break;
+                default:
+                    System.out.println("Error: " + KeeperException.create(KeeperException.Code.get(rc), path));
+            }
+        }
+    };
+
+    private void createParent(String path, byte[] data) {
+        // ctx 传入 data，用以在回调函数中继续使用
+        zooKeeper.create(path, data, OPEN_ACL_UNSAFE, CreateMode.PERSISTENT, createParentCallback, data);
+    }
+
+    private void bootstrap() {
+        String[] parents = {"/workers", "/assign", "/tasks", "/status"};
+        Arrays.stream(parents)
+                .forEach(parent -> createParent(parent, new byte[0]));
     }
 
     private void startZK() throws Exception {
@@ -98,6 +129,7 @@ public class Master implements Watcher {
     public static void main(String[] args) throws Exception {
         Master m = new Master("127.0.0.1:2181");
         m.startZK();
+        m.bootstrap();
         m.runForMaster();
         Thread.sleep(6000);
         m.stopZK();
