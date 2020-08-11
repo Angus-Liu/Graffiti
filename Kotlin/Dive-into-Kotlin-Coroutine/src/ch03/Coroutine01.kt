@@ -1,4 +1,4 @@
-package chapter3
+package ch03
 
 import kotlin.coroutines.*
 

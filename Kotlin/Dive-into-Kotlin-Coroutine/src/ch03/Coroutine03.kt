@@ -1,6 +1,5 @@
-package chapter3
+package ch03
 
-import java.lang.NullPointerException
 import kotlin.coroutines.*
 
 /**
