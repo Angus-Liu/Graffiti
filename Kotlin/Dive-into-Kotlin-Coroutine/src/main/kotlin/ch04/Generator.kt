@@ -10,6 +10,15 @@ interface Generator<T> {
     operator fun iterator(): Iterator<T>
 }
 
+class GeneratorImpl<T>(
+        private val block: suspend GeneratorScope<T>.(T) -> Unit,
+        private val parameter: T
+) : Generator<T> {
+    override fun iterator(): Iterator<T> {
+        return GeneratorIterator(block, parameter)
+    }
+}
+
 interface GeneratorScope<T> {
     suspend fun yield(value: T)
 }
@@ -79,17 +88,12 @@ class GeneratorIterator<T>(
     }
 }
 
-class GeneratorImpl<T>(
-    private val block: suspend GeneratorScope<T>.(T) -> Unit,
-    private val parameter: T
-) : Generator<T> {
-    override fun iterator(): Iterator<T> {
-        return GeneratorIterator(block, parameter)
-    }
-}
-
 fun <T> generator(block: suspend GeneratorScope<T>.(T) -> Unit): (T) -> Generator<T> {
     return { parameter: T ->
         GeneratorImpl(block, parameter)
     }
+}
+
+fun main() {
+    
 }
