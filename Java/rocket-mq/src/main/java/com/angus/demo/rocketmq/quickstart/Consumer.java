@@ -1,16 +1,16 @@
-package com.angus.demo.rocketmq.sync;
+package com.angus.demo.rocketmq.quickstart;
 
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
 
-import static com.angus.demo.rocketmq.sync.SyncProducer.*;
+import static com.angus.demo.rocketmq.quickstart.Producer.*;
 
 /**
- * 同步消费者
+ * 消息消费者
  */
-public class SyncConsumer {
+public class Consumer {
 
     public static void main(String[] args) throws Exception {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("default_mq_push_consumer_group");

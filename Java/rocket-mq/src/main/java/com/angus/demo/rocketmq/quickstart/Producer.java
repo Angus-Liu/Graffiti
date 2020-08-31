@@ -1,4 +1,4 @@
-package com.angus.demo.rocketmq.sync;
+package com.angus.demo.rocketmq.quickstart;
 
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
@@ -6,9 +6,9 @@ import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
 
 /**
- * 同步生产者
+ * 消息生产者
  */
-public class SyncProducer {
+public class Producer {
 
     final static String NAMESRV_ADDR = "172.20.220.133:9876";
 
