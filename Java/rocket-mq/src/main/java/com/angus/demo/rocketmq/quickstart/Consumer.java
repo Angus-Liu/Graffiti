@@ -5,7 +5,7 @@ import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
 
-import static com.angus.demo.rocketmq.quickstart.Producer.*;
+import static com.angus.demo.rocketmq.constants.CommonConstants.*;
 
 /**
  * 消息消费者

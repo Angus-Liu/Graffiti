@@ -5,17 +5,12 @@ import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
 
+import static com.angus.demo.rocketmq.constants.CommonConstants.*;
+
 /**
  * 消息生产者
  */
 public class Producer {
-
-    final static String NAMESRV_ADDR = "172.20.220.133:9876";
-
-    final static String TOPIC = "TopicTest";
-
-    final static String TAGS = "TagA";
-
     public static void main(String[] args) throws Exception {
         DefaultMQProducer producer = new DefaultMQProducer("default_mq_producer_group");
         producer.setNamesrvAddr(NAMESRV_ADDR);
