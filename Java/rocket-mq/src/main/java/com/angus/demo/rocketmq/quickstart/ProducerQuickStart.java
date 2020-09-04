@@ -9,7 +9,7 @@ import org.apache.rocketmq.remoting.common.RemotingHelper;
 import static com.angus.demo.rocketmq.constants.CommonConstants.*;
 
 /**
- * TODO: angus on 2020/9/1 添加注释
+ * DefaultMQProducer
  */
 public class ProducerQuickStart {
     public static void main(String[] args) throws Exception {
