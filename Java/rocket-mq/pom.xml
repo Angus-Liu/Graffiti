@@ -42,6 +42,16 @@
             <artifactId>rocketmq-broker</artifactId>
             <version>4.7.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-namesrv</artifactId>
+            <version>4.7.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-all</artifactId>
+            <version>4.7.1</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
