@@ -41,11 +41,13 @@ public class FileIndexService {
             new Thread(
                     new FileCrawler(
                             fileQueue,
-                            pathname -> pathname.isDirectory() || pathname.getName().endsWith(".jpg"),
+                            pathname -> pathname.isDirectory()
+                                    || pathname.getName().endsWith(".jpg")
+                                    || pathname.getName().endsWith(".png"),
                             root,
                             () -> {
                                 producerLatch.countDown();
-                                System.out.println("[" + Thread.currentThread().getName() + "]" + " stop...");
+                                System.out.println("[ Producer " + Thread.currentThread().getName() + " ]" + " stop...");
                             })
             ).start();
         }
@@ -54,9 +56,11 @@ public class FileIndexService {
                     new Indexer(
                             fileQueue,
                             () -> {
-                               if (producerLatch.getCount() == 0 && fileQueue.isEmpty())
-                                   consumerLatch.await();
-                                   Thread.currentThread().interrupt();
+                                if (producerLatch.getCount() == 0 && fileQueue.isEmpty()) {
+                                    consumerLatch.countDown();
+                                    System.out.println("[ Consumer " + Thread.currentThread().getName() + " ]" + " stop...");
+                                    Thread.currentThread().interrupt();
+                                }
                             })
             ).start();
         }
@@ -67,10 +71,10 @@ public class FileIndexService {
     public static void main(String[] args) throws InterruptedException {
         List<File> roots = new ArrayList<>();
         roots.add(new File("/Users/angus/Documents/Notes"));
-        roots.add(new File("/Users/angus/Documents/Notes"));
+        roots.add(new File("/Users/angus/Documents/mtbox"));
 
         System.out.println("start index...");
-        startIndexing(roots, 2);
+        startIndexing(roots, 5);
 
         getAllIndex().forEach((f, s) ->
                 System.out.println(f.getName() + " : " + s)

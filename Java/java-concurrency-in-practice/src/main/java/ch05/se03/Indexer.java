@@ -2,6 +2,7 @@ package ch05.se03;
 
 import java.io.File;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 索引服务
@@ -26,7 +27,8 @@ public class Indexer implements Runnable {
         try {
             while (true) {
                 check.run();
-                indexFile(fileQueue.take());
+                File f = fileQueue.poll(100, TimeUnit.MILLISECONDS);
+                if (f != null) indexFile(f);
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
