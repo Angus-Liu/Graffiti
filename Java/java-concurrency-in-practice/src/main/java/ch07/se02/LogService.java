@@ -12,6 +12,7 @@ public class LogService {
     private final LoggerThread loggerThread;
     private final PrintWriter writer;
     private boolean isShutdown;
+    // 通过 reservations 变量可以保证在线程 isShutdown 之后将之前未消费的日志进行消费
     private int reservations;
 
     public LogService(BlockingQueue<String> queue, LoggerThread loggerThread, PrintWriter writer) {
@@ -47,7 +48,7 @@ public class LogService {
                 while (true) {
                     try {
                         synchronized (LogService.this) {
-                            if (isShutdown && reservations <= 0)
+                            if (isShutdown && reservations == 0)
                                 break;
                         }
                         String msg = queue.take();
