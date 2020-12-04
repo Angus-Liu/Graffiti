@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import org.controlsfx.dialog.ExceptionDialog;
 
 /**
  * PersonOverviewController
@@ -69,6 +70,16 @@ public class PersonOverviewController {
             postalCodeLabel.setText("");
             cityLabel.setText("");
             birthdayLabel.setText("");
+        }
+    }
+
+    @FXML
+    private void handleDeletePerson() {
+        int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
+        try {
+            personTable.getItems().remove(selectedIndex);
+        } catch (Exception e) {
+            new ExceptionDialog(e).show();
         }
     }
 }
