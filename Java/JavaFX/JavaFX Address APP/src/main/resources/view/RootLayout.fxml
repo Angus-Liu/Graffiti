@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0"
+            prefWidth="700.0" stylesheets="@../css/DarkTheme.css" xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.angus.address.view.RootLayoutController">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="New" onAction="#handleNew"/>
+                        <MenuItem mnemonicParsing="false" text="Open" onAction="#handleOpen"/>
+                        <MenuItem mnemonicParsing="false" text="Save" onAction="#handleSave"/>
+                        <MenuItem mnemonicParsing="false" text="Save As..." onAction="#handleSaveAs"/>
+                        <MenuItem mnemonicParsing="false" text="About" onAction="#handleAbout"/>
+                        <MenuItem mnemonicParsing="false" text="Exit" onAction="#handleExit"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+</BorderPane>
