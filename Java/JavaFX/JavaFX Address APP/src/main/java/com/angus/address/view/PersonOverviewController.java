@@ -4,9 +4,7 @@ import com.angus.address.MainApp;
 import com.angus.address.model.Person;
 import com.angus.address.util.DateUtil;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import org.controlsfx.dialog.ExceptionDialog;
 
 /**
@@ -80,6 +78,17 @@ public class PersonOverviewController {
             personTable.getItems().remove(selectedIndex);
         } catch (Exception e) {
             new ExceptionDialog(e).show();
+        }
+    }
+
+    @FXML
+    private void handleEditPerson() {
+        Person selectedPerson = personTable.getSelectionModel().getSelectedItem();
+        if (selectedPerson != null) {
+            boolean okClicked = mainApp.showPersonEditDialog(selectedPerson);
+            if (okClicked) showPersonDetails(selectedPerson);
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Please select a person in the table.", ButtonType.OK).show();
         }
     }
 }

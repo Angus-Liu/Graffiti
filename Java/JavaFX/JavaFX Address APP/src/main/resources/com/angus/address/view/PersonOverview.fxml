@@ -61,7 +61,8 @@
                         <Insets right="5.0"/>
                     </HBox.margin>
                 </Button>
-                <Button layoutX="148.0" layoutY="257.0" mnemonicParsing="false" text="Edit...">
+                <Button layoutX="148.0" layoutY="257.0" mnemonicParsing="false" text="Edit..."
+                        onAction="#handleEditPerson">
                     <HBox.margin>
                         <Insets right="5.0"/>
                     </HBox.margin>
