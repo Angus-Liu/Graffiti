@@ -2,9 +2,11 @@ package com.angus.address;
 
 import com.angus.address.model.Person;
 import com.angus.address.model.PersonListWrapper;
+import com.angus.address.view.BirthdayStatisticsController;
 import com.angus.address.view.PersonEditDialogController;
 import com.angus.address.view.PersonOverviewController;
 import com.angus.address.view.RootLayoutController;
+import com.sun.deploy.util.FXLoader;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -180,6 +182,28 @@ public class MainApp extends Application {
 
             setPersonFilePath(file);
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showBirthdayStatistics() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("/view/BirthdayStatistics.fxml"));
+            AnchorPane page = loader.load();
+            Scene scene = new Scene(page);
+
+            BirthdayStatisticsController controller = loader.getController();
+            controller.setPersonData(personData);
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Birthday Statistics");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            dialogStage.setScene(scene);
+
+            dialogStage.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

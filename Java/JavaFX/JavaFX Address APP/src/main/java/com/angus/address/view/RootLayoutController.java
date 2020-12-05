@@ -3,7 +3,6 @@ package com.angus.address.view;
 
 import com.angus.address.MainApp;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.stage.FileChooser;
@@ -74,5 +73,10 @@ public class RootLayoutController {
     @FXML
     private void handleExit() {
         System.exit(0);
+    }
+
+    @FXML
+    private void handleShowBirthdayStatistics() {
+        mainApp.showBirthdayStatistics();
     }
 }
