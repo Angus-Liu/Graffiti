@@ -25,7 +25,7 @@ public class GrowingNodes extends Application {
         HBox.setMargin(btn2, new Insets(10));
         HBox.setMargin(btn3, new Insets(10));
 
-        HBox.setHgrow(spacer, Priority.SOMETIMES);
+        HBox.setHgrow(spacer, Priority.ALWAYS);
 
         HBox hBox = new HBox(10, btn1, btn2, spacer, btn3);
 
