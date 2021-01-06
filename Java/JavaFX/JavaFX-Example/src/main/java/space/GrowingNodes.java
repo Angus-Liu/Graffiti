@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  */
 public class GrowingNodes extends Application {
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         Button btn1 = new Button("One");
         Button btn2 = new Button("Two");
         Button btn3 = new Button("Three");
