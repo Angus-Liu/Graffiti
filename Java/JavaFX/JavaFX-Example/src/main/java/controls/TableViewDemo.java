@@ -6,6 +6,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -18,8 +19,11 @@ public class TableViewDemo extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         TableView<Movie> table = new TableView<>();
+        table.setEditable(true);
         TableColumn<Movie, String> colName = new TableColumn<>("Name");
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colName.setCellFactory(TextFieldTableCell.forTableColumn());
+        colName.setOnEditCommit(e -> e.getRowValue().setName(e.getNewValue()));
         TableColumn<Movie, Integer> colYear = new TableColumn<>("Year");
         colYear.setCellValueFactory(new PropertyValueFactory<>("year"));
         TableColumn<Movie, Integer> colPrice = new TableColumn<>("Price");
