@@ -85,6 +85,10 @@ public class ShapeMaker extends Application {
 
         groupNodes.addAll(a1, a2, a3);
 
+//        group.setRotate(30);
+//        group.setTranslateX(110);
+//        group.setTranslateY(110);
+
         Scene scene = new Scene(group, 600, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
