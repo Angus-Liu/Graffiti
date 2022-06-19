@@ -56,10 +56,24 @@ SECTION mbr align=16 vstart=0x7c00
 
   ; 计算入口点代码段基址
 direct:
+  mov ax,[0x06]
+  mov dx,[0x08]
+  call calc_segment_base
+  mov [0x06],ax ; 将计算出的段地址回填，以备用户程序使用
 
+  ; 根据段重定位表信息处理所有需要重定位的表项（同上）
+  mov cx,[0x0a] ; 需要重定位的表项个数
+  mov bx,0x0c   ; 重定位表首地址
+realloc:
+  mov ax,[bx]
+  mov dx,[bx+0x02]
+  call calc_segment_base
+  mov [bx],ax   ; 回填段地址
+  add bx,4
+  loop realloc
 
-
-
+  ; 转到用户程序
+  jmp far [0x04]
 
 ; ---------------------------------
 ;      read_hard_disk start
@@ -145,8 +159,8 @@ calc_segment_base:
   adc dx,[cs:phy_base+0x02]
   ; 20位物理地址整体右移 4 位得到段地址
   shr ax,4
-  ror dx,4
-  and dx,0xf000
+  ror dx,4      ; 也可以改为左移
+  and dx,0xf000 ; 清掉不需要的位数
   or ax,dx
   ; 也可直接除 16，更简单
   ; mov bx,16
@@ -159,7 +173,7 @@ calc_segment_base:
 ;      calc_segment_base end
 ; ---------------------------------
 
-  ; 用户程序被加载到内存中的物理起始地址
+  ; 用户程序被加载到内存中的物理起始地址（20位）
   phy_base dd 0x10000
 
   times 510-($-$$) db 0
