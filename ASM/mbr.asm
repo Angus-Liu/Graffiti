@@ -159,7 +159,7 @@ calc_segment_base:
   adc dx,[cs:phy_base+0x02]
   ; 20位物理地址整体右移 4 位得到段地址
   shr ax,4
-  ror dx,4      ; 也可以改为左移
+  ror dx,4      ; 也可以改为左移 12 位
   and dx,0xf000 ; 清掉不需要的位数
   or ax,dx
   ; 也可直接除 16，更简单

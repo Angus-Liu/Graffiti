@@ -9,6 +9,7 @@ SECTION header vstart=0
 
   ; 段重定位表信息
   realloc_tbl_len dw (tbl_end - tbl_start) / 4  ; 表项个数[0x0a]
+
   tbl_start:                             ;[0x0c] 表项首地址
     code_segment  dd section.code.start  ;[0x0c]
     data_segment  dd section.data.start  ;[0x10]
@@ -28,7 +29,7 @@ start:
   mov cx,(string_end-string)
 show:
   mov al,[si]
-  mov ah,0x41
+  mov ah,[black_white] ; 黑底白字
   mov [es:di],ax
   inc si
   add di,2
@@ -39,6 +40,8 @@ show:
 SECTION data align=16 vstart=0
   string db 'Hello World'
   string_end:
+  black_white db 0x07
+
 
 SECTION stack align=16 vstart=0
 
